@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{45800EF9-D3F3-4676-BB4D-6B4AFD955C7A}"
 EndProject
@@ -13,7 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CB.Persistence", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prensentation", "Prensentation", "{6E34DD91-2541-4C10-9ED9-CC2594637A7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarBookProject.WebApi", "Presentation\CarBookProject.WebApi\CarBookProject.WebApi.csproj", "{ACE0ECBC-B29C-4C26-83DF-43C862FDC474}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CB.WebApi", "Presentation\CarBookProject.WebApi\CB.WebApi.csproj", "{ACE0ECBC-B29C-4C26-83DF-43C862FDC474}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CB.Application", "Core\CB.Application\CB.Application.csproj", "{20C4EFF4-E925-47B5-BB97-0A5055A70561}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{ACE0ECBC-B29C-4C26-83DF-43C862FDC474}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACE0ECBC-B29C-4C26-83DF-43C862FDC474}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACE0ECBC-B29C-4C26-83DF-43C862FDC474}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20C4EFF4-E925-47B5-BB97-0A5055A70561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20C4EFF4-E925-47B5-BB97-0A5055A70561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20C4EFF4-E925-47B5-BB97-0A5055A70561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20C4EFF4-E925-47B5-BB97-0A5055A70561}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,5 +47,6 @@ Global
 		{B41B884D-719A-4A24-A174-26CEF879231C} = {45800EF9-D3F3-4676-BB4D-6B4AFD955C7A}
 		{DFDC0CA3-B960-4BAD-B342-FC2451D48C1E} = {F82F3F92-6E65-4363-88F6-0F0326205D36}
 		{ACE0ECBC-B29C-4C26-83DF-43C862FDC474} = {6E34DD91-2541-4C10-9ED9-CC2594637A7E}
+		{20C4EFF4-E925-47B5-BB97-0A5055A70561} = {45800EF9-D3F3-4676-BB4D-6B4AFD955C7A}
 	EndGlobalSection
 EndGlobal
