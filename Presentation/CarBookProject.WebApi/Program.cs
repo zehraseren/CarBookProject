@@ -1,4 +1,5 @@
 using CB.Persistence.Context;
+using CB.Application.Services;
 using CB.Application.Container;
 using CB.Application.Interfaces;
 using CB.Persistence.Repositories;
@@ -13,7 +14,11 @@ builder.Services.AddScoped<CarBookContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
 
+// For CQRS
 builder.Services.ContainerDependecies();
+
+// For Mediator
+builder.Services.AddApplicationService(builder.Configuration);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
