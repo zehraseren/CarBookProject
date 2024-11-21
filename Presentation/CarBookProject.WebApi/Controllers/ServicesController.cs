@@ -34,21 +34,21 @@ namespace CB.WebApi.Controllers
         public async Task<IActionResult> CreateService(CreateServiceCommand command)
         {
             await _mediator.Send(command);
-            return Ok("Konum bilgisi eklendi.");
+            return Ok("Hizmet bilgisi eklendi.");
         }
 
         [HttpDelete]
         public async Task<IActionResult> RemoveService(int id)
         {
             await _mediator.Send(new RemoveServiceCommand(id));
-            return Ok("Konum bilgisi silindi.");
+            return Ok("Hizmet bilgisi silindi.");
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateService(UpdateServiceCommand command)
         {
             await _mediator.Send(command);
-            return Ok("Konum bilgisi güncellendi.");
+            return Ok("Hizmet bilgisi güncellendi.");
         }
     }
 }
