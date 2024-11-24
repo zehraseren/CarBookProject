@@ -29,6 +29,7 @@ namespace CB.Application.Container
             services.AddScoped<CreateBrandCommandHandler>();
             services.AddScoped<RemoveBrandCommandHandler>();
             services.AddScoped<UpdateBrandCommandHandler>();
+            services.AddScoped<GetLast5CarsWithBrandQueryHandler>();
 
             services.AddScoped<GetCarQueryHandler>();
             services.AddScoped<GetCarByIdQueryHandler>();
