@@ -6,6 +6,8 @@ namespace CB.WebUI.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.v1 = "HİZMETLER";
+            ViewBag.v2 = "HİZMETLERİMİZ";
             return View();
         }
     }
