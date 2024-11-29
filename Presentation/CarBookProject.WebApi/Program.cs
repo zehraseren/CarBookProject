@@ -4,7 +4,9 @@ using CB.Application.Container;
 using CB.Application.Interfaces;
 using CB.Persistence.Repositories;
 using CB.Application.Interfaces.CarInterfaces;
+using CB.Application.Interfaces.BlogInterfaces;
 using CB.Persistence.Repositories.CarRepository;
+using CB.Persistence.Repositories.BlogRepositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<CarBookContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
+builder.Services.AddScoped(typeof(IBlogRepository), typeof(BlogRepository));
 
 // For CQRS
 builder.Services.ContainerDependecies();
