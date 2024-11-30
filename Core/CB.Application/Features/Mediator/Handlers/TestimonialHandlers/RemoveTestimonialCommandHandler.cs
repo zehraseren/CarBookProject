@@ -17,6 +17,7 @@ namespace CB.Application.Features.Mediator.Handlers.TestimonialHandlers
         public async Task Handle(RemoveTestimonialCommand request, CancellationToken cancellationToken)
         {
             var value = await _repository.GetByIdAsync(request.Id);
+            await _repository.RemoveAsync(value);
         }
     }
 }

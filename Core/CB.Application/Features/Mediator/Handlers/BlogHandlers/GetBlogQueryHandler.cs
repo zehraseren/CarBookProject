@@ -20,6 +20,7 @@ namespace CB.Application.Features.Mediator.Handlers.BlogHandlers
             var values = await _repository.GetAllAsync();
             return values.Select(x => new GetBlogQueryResult
             {
+                BlogId = x.BlogId,
                 Title = x.Title,
                 AuthorId = x.AuthorId,
                 CoverImageUrl = x.CoverImageUrl,

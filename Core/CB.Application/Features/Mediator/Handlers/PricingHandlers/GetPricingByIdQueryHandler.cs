@@ -20,6 +20,7 @@ namespace CB.Application.Features.Mediator.Handlers.PricingHandlers
             var value = await _repository.GetByIdAsync(request.Id);
             return new GetPricingByIdQueryResult
             {
+                PricingId = value.PricingId,
                 Name = value.Name,
             };
         }

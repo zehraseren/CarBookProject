@@ -20,6 +20,7 @@ namespace CB.Application.Features.Mediator.Handlers.TestimonialHandlers
             var value = await _repository.GetByIdAsync(request.Id);
             return new GetTestimonialByIdQueryResult
             {
+                TestimonialId = value.TestimonialId,
                 Name = value.Name,
                 Title = value.Title,
                 Comment = value.Comment,

@@ -20,6 +20,7 @@ namespace CB.Application.Features.Mediator.Handlers.ServiceHandlers
             var value = await _repository.GetByIdAsync(request.Id);
             return new GetServiceByIdQueryResult
             {
+                ServiceId = value.ServiceId,
                 Title = value.Title,
                 Description = value.Description,
                 IconUrl = value.IconUrl,

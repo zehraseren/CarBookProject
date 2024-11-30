@@ -20,6 +20,7 @@ namespace CB.Application.Features.Mediator.Handlers.LocationHandlers
             var value = await _repository.GetByIdAsync(request.Id);
             return new GetLocationByIdQueryResult
             {
+                LocationId = value.LocationId,
                 Name = value.Name,
             };
         }

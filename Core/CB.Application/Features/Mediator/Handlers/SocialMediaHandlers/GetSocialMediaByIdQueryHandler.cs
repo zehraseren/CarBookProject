@@ -20,6 +20,7 @@ namespace CB.Application.Features.Mediator.Handlers.SocialMediaHandlers
             var value = await _repository.GetByIdAsync(request.Id);
             return new GetSocialMediaByIdQueryResult
             {
+                SocialMediaId = value.SocialMediaId,
                 Name = value.Name,
                 Url = value.Url,
                 Icon = value.Icon,
