@@ -25,6 +25,7 @@ namespace CB.Application.Features.Mediator.Handlers.BlogHandlers
                 CoverImageUrl = x.CoverImageUrl,
                 CreatedDate = x.CreatedDate,
                 CategoryId = x.CategoryId,
+                BlogId = x.BlogId,
             }).ToList();
         }
     }

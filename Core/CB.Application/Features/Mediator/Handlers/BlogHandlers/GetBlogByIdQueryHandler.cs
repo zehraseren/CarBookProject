@@ -20,12 +20,13 @@ namespace CB.Application.Features.Mediator.Handlers.BlogHandlers
             var value = await _repository.GetByIdAsync(request.Id);
             return new GetBlogByIdQueryResult
             {
-                BlogId = value.BlogId,                
+                BlogId = value.BlogId,
                 Title = value.Title,
                 AuthorId = value.AuthorId,
                 CoverImageUrl = value.CoverImageUrl,
                 CreatedDate = value.CreatedDate,
                 CategoryId = value.CategoryId,
+                Description = value.Description,
             };
         }
     }
