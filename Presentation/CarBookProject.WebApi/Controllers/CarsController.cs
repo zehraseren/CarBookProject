@@ -49,7 +49,7 @@ namespace CB.WebApi.Controllers
             return Ok("Araba bilgisi eklendi.");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveCar(int id)
         {
             await _removeCarCommandHandler.Handle(new RemoveCarCommand(id));
