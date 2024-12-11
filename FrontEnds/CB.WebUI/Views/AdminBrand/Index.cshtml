@@ -1,0 +1,60 @@
+﻿@model List<ResultBrandDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Araba Markaları Listesi</h4>
+                        <p class="card-subtitle mb-4">
+                            Arabalarla ilgili marka listesi, markalar üzerinde düzenleme ve bir markayı kaldırma işlemini buradan gerçekleştirebilirsiniz.
+                        </p>
+                        @if (Model.Count == 0)
+                        {
+                            <div class="alert alert-danger mt-3" role="alert">
+                                <p><i>Daha önce eklenen herhangi bir marka <b>bulunamadı.</b> Aşağıdaki özellikle girişi butonundan yeni bir marka ekleyebilirsiniz.</i></p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Marka</th>
+                                            <th>Sil</th>
+                                            <th>Güncelle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <th scope="row">@count</th>
+                                                <td>@item.Name</td>
+                                                <td><a href="/AdminBrand/RemoveBrand/@item.BrandId" class="btn btn-outline-danger">Sil</a></td>
+                                                <td><a href="/AdminBrand/UpdateBrand/@item.BrandId" class="btn btn-outline-success">Güncelle</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <div class="d-flex justify-content-end mt-4 none-border">
+                                    <a href="/AdminBrand/CreateBrand/" class="btn btn-outline-info">Yeni Marka Girişi</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
