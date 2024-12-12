@@ -45,7 +45,7 @@ namespace CB.WebApi.Controllers
             return Ok("Banner bilgisi eklendi.");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveBanner(int id)
         {
             await _removeBannerCommandHandler.Handle(new RemoveBannerCommand(id));
