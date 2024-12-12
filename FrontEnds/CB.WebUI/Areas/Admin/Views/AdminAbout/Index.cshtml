@@ -1,0 +1,60 @@
+﻿@model List<ResultAboutDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Hakkımda Bilgisi Paneli</h4>
+                        <p class="card-subtitle mb-4">
+                            Anasayfanın ve Hakkımızda sayfasının <strong>hakkımda</strong> alanında bulunan bilgileri aşağıdan düzenleyebilirsiniz. Tema bütünlüğünün bozulmaması adına lütfen sadece <strong>1 tane</strong> veri girişi yapınız. Aksi durumlarda tema bütünlüğün bozulacaktır.
+                        </p>
+                        @if (Model.Count == 0)
+                        {
+                            <div class="alert alert-danger mt-3" role="alert">
+                                <p><i>Daha önce eklenen herhangi bir About <b>bulunamadı.</b> Aşağıdaki kısımları doldurarak yeni bir About ekleyebilirsiniz.</i></p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Başlık</th>
+                                            <th>Açıklama</th>
+                                            <th>Image URL</th>
+                                            <th>Sil</th>
+                                            <th>Güncelle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.title</td>
+                                                <td>@item.description</td>
+                                                <td>@item.imageUrl</td>
+                                                <td><a href="/Admin/AdminAbout/RemoveAbout/@item.aboutId" class="btn btn-outline-danger">Sil</a></td>
+                                                <td><a href="/Admin/AdminAbout/UpdateAbout/@item.aboutId" class="btn btn-outline-success">Güncelle</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <div class="d-flex justify-content-end mt-4 none-border">
+                                    <a href="/Admin/AdminAbout/CreateAbout/" class="btn btn-outline-info">Yeni Hakkımda Bilgisi Girişi</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

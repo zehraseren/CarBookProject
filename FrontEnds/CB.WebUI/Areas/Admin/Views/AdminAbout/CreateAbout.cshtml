@@ -1,0 +1,39 @@
+﻿@model CreateAboutDto
+
+@{
+    ViewData["Title"] = "CreateAbout";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Hakkımda Bilgisi Girişi</h4>
+                        <p class="card-subtitle mb-4">Hakkımda alanına veri girişini aşağıdaki panelden yapabilirsiniz. Tasarımda bozulma olmamasına adına yeni bir hakkımda girişi yaptıktan sonra önceki hakıımda alanını silin, sadece <strong>1 tane</strong> hakkımda verisi kalmalıdır.</p>
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Başlık</label>
+                                <input type="text" class="form-control" id="exampleInputTitle1" asp-for="title" placeholder="Başlığı yazınız">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Açıklama</label>
+                                <textarea type="text" class="form-control" id="exampleInputDescription1" asp-for="description" placeholder="Açıklamayı yazınız" rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputVideoUrl">Video URL</label>
+                                <input type="text" class="form-control" id="exampleInputVideoUrl1" asp-for="imageUrl" placeholder="Video'nun YouTube Enbed linkini giriniz">
+                            </div>
+                            <div class="d-flex justify-content-end mt-4 none-border">
+                                <button type="submit" class="btn btn-outline-success mr-3">Hakkımda Bilgisini Ekle</button>
+                                <a href="/Admin/AdminAbout/Index/" class="btn btn-outline-danger mr-0">Vazgeç</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

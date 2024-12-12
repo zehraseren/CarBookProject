@@ -1,0 +1,40 @@
+﻿@model UpdateAboutDto
+
+@{
+    ViewData["Title"] = "UpdateAbout";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">About Bilgisi Güncelleme Sayfası</h4>
+                        <p class="card-subtitle mb-4">About alanında veri güncellemeyi aşağıdaki panelden yapabilirsiniz.</p>
+                        <form method="post">
+                            <div class="form-group">
+                                <input type="hidden" asp-for="aboutId" />
+                                <label for="exampleInputTitle">Başlık</label>
+                                <input type="text" class="form-control" id="exampleInputTitle1" asp-for="title" placeholder="Marka adı yazınız">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputTitle">Açıklama</label>
+                                <textarea type="text" class="form-control" id="exampleInputDescription1" asp-for="description" placeholder="Açıklamayı yazınız" rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputVideoUrl">Video URL</label>
+                                <input type="text" class="form-control" id="exampleInputVideoUrl1" asp-for="imageUrl" placeholder="Video'nun YouTube Enbed linkini giriniz">
+                            </div>
+                            <div class="d-flex justify-content-end mt-4 none-border">
+                                <button type="submit" class="btn btn-outline-success mr-3">Hakkımda Bilgisini Kaydet</button>
+                                <a href="/Admin/AdminAbout/Index/" class="btn btn-outline-danger mr-0">Vazgeç</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
