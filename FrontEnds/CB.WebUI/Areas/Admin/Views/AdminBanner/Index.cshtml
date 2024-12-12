@@ -1,9 +1,8 @@
-﻿@model List<ResultBrandDto>
+﻿@model List<ResultBannerDto>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
-    int count = 0;
 }
 
 <div class="page-content">
@@ -12,14 +11,14 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Araba Markaları Listesi</h4>
+                        <h4 class="card-title">Ansasayfa Banner Alanı</h4>
                         <p class="card-subtitle mb-4">
-                            Arabalarla ilgili marka listesi, markalar üzerinde düzenleme ve bir markayı kaldırma işlemini buradan gerçekleştirebilirsiniz.
+                            Anasayfanın banner alanında bulunan bilgileri aşağıdan düzenleyebilirsiniz.Tema bütünlüğünü bozulmaması adına lütfen sadece <strong>1 tane</strong> veri girişi yapınız. Aksi durumda tema bütünlüğü bozulacaktır.
                         </p>
                         @if (Model.Count == 0)
                         {
                             <div class="alert alert-danger mt-3" role="alert">
-                                <p><i>Daha önce eklenen herhangi bir marka <b>bulunamadı.</b> Aşağıdaki kısımları doldurarak yeni marka girişi butonundan yeni bir marka ekleyebilirsiniz.</i></p>
+                                <p><i>Daha önce eklenen herhangi bir banner <b>bulunamadı.</b> Aşağıdaki kısımları doldurarak yeni bir banner ekleyebilirsiniz.</i></p>
                             </div>
                         }
                         else
@@ -28,27 +27,32 @@
                                 <table class="table mb-0">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Marka</th>
+                                            <th>Başlık</th>
+                                            <th>Açıklama</th>
+                                            <th>Video URL</th>
+                                            <th>Video Açıklama</th>
                                             <th>Sil</th>
                                             <th>Güncelle</th>
+                                            <th>YouTube'da Aç</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                            count++;
                                             <tr>
-                                                <th scope="row">@count</th>
-                                                <td>@item.Name</td>
-                                                <td><a href="/AdminBrand/RemoveBrand/@item.BrandId" class="btn btn-outline-danger">Sil</a></td>
-                                                <td><a href="/AdminBrand/UpdateBrand/@item.BrandId" class="btn btn-outline-success">Güncelle</a></td>
+                                                <td>@item.Title</td>
+                                                <td>@item.Description</td>
+                                                <td>@item.VideoUrl</td>
+                                                <td>@item.VideoDescription</td>
+                                                <td><a href="/Admin/AdminBanner/RemoveBanner/@item.BannerId" class="btn btn-outline-danger">Sil</a></td>
+                                                <td><a href="/Admin/AdminBanner/UpdateBanner/@item.BannerId" class="btn btn-outline-success">Güncelle</a></td>
+                                                <td><a href="#" class="btn btn-outline-success">İzle</a></td>
                                             </tr>
                                         }
                                     </tbody>
                                 </table>
                                 <div class="d-flex justify-content-end mt-4 none-border">
-                                    <a href="/AdminBrand/CreateBrand/" class="btn btn-outline-info">Yeni Marka Girişi</a>
+                                    <a href="/Admin/AdminBanner/CreateBanner/" class="btn btn-outline-info">Yeni Banner Girişi</a>
                                 </div>
                             </div>
                         }
