@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/226ba606-aa07-482b-b666-d412d9d6f9b0)## ✨Mediator tasarım deseni nedir?
+✨Mediator tasarım deseni nedir?
 Mediator tasarım deseni, nesneler arasındaki iletişimi merkezileştiren bir tasarım desenidir. Nesnelerin birbirleriyle doğrudan iletişim kurmasını engelleyerek, tüm etkileşimleri bir arabulucu (mediator) üzerinden gerçekleştirir. Bu, bağımlılıkları azaltır ve kodun yönetilebilirliğini artırır.
 
 #### ⚜️Temel Prensipler
