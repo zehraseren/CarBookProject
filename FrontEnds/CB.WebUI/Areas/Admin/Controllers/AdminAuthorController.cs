@@ -1,17 +1,17 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
-using CB.Dto.BannerDtos;
+using CB.Dto.AuthorDtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CB.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/[controller]/[action]/{id?}")]
-    public class AdminBannerController : Controller
+    public class AdminAuthorController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public AdminBannerController(IHttpClientFactory httpClientFactory)
+        public AdminAuthorController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -19,29 +19,40 @@ namespace CB.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44347/api/Banners");
+            var responseMessage = await client.GetAsync("https://localhost:44347/api/Authors");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultBannerDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultAuthorDto>>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpGet]
-        public IActionResult CreateBanner()
+        public IActionResult CreateAuthor()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBanner(CreateBannerDto cbdto)
+        public async Task<IActionResult> CreateAuthor(CreateAuthorDto cadto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(cbdto);
+            var jsonData = JsonConvert.SerializeObject(cadto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:44347/api/Banners", content);
+            var responseMessge = await client.PostAsync("https://localhost:44347/api/Authors", content);
+            if (responseMessge.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> RemoveAuthor(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.DeleteAsync($"https://localhost:44347/api/Authors/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -49,38 +60,27 @@ namespace CB.WebUI.Areas.Admin.Controllers
             return View();
         }
 
-        public async Task<IActionResult> RemoveBanner(int id)
-        {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:44347/api/Banners/{id}");
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index");
-            }
-            return View();
-        }
-
         [HttpGet]
-        public async Task<IActionResult> UpdateBanner(int id)
+        public async Task<IActionResult> UpdateAuthor(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:44347/api/Banners/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:44347/api/Authors/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateBannerDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateAuthorDto>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateBanner(UpdateBannerDto ubdto)
+        public async Task<IActionResult> UpdateAuthor(UpdateAuthorDto uadto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(ubdto);
+            var jsonData = JsonConvert.SerializeObject(uadto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:44347/api/Banners", content);
+            var responseMessage = await client.PutAsync("https://localhost:44347/api/Authors", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
