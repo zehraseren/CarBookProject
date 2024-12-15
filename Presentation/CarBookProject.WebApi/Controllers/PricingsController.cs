@@ -37,7 +37,7 @@ namespace CB.WebApi.Controllers
             return Ok("Ödeme türü bilgisi eklendi.");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> RemovePricing(int id)
         {
             await _mediator.Send(new RemovePricingCommand(id));
