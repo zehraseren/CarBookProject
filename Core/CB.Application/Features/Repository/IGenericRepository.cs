@@ -7,5 +7,6 @@
         void Update(T t);
         void Remove(T t);
         T GetById(int id);
+        List<T> GetCommentsByBlogId(int id);
     }
 }

@@ -29,6 +29,7 @@ namespace CB.Application.Features.Mediator.Handlers.BlogHandlers
                 Description = x.Description,
                 AuthorDescription = x.Author.Description,
                 AuthorImageUrl = x.Author.ImageUrl,
+                CategoryName = x.Category.Name,
             }).ToList();
         }
     }
