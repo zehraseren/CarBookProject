@@ -1,4 +1,4 @@
-﻿@model List<ResultAboutDto>
+﻿@model List<ResultTestimonialDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -11,14 +11,14 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Hakkımda Bilgisi Paneli</h4>
+                        <h4 class="card-title">Ana Sayfa Referanslar Listesi</h4>
                         <p class="card-subtitle mb-4">
-                            Anasayfanın ve Hakkımızda sayfasının <strong>hakkımda</strong> alanında bulunan bilgileri aşağıdan düzenleyebilirsiniz. Tema bütünlüğünün bozulmaması adına lütfen sadece <strong>1 tane</strong> veri girişi yapınız. Aksi durumlarda tema bütünlüğün bozulacaktır.
+                            Müşterilerimizin bizim hakkımızda söylemiş oldukları ifadeleri yorum olarak ekleyip, düzenleyebildiğimiz sayfamız aşağıda yer almaktadır.
                         </p>
                         @if (Model.Count == 0)
                         {
                             <div class="alert alert-danger mt-3" role="alert">
-                                <p><i>Daha önce eklenen herhangi bir hakkımda bilgisi <b>bulunamadı.</b> Aşağıdaki kısımları doldurarak yeni bir hakkımda bilgisi ekleyebilirsiniz.</i></p>
+                                <p><i>Daha önce eklenen herhangi bir müşteri yorumu <b>bulunamadı.</b> Aşağıdaki kısımları doldurarak yeni bir müşteri yorumu  ekleyebilirsiniz.</i></p>
                             </div>
                         }
                         else
@@ -27,9 +27,10 @@
                                 <table class="table mb-0">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
+                                            <th>Ad Soyad</th>
                                             <th>Başlık</th>
-                                            <th>Açıklama</th>
-                                            <th>Fotoğraf URL</th>
+                                            <th>Yorum</th>
                                             <th>Sil</th>
                                             <th>Güncelle</th>
                                         </tr>
@@ -38,11 +39,12 @@
                                         @foreach (var item in Model)
                                         {
                                             <tr>
-                                                <td>@item.title</td>
-                                                <td>@item.description</td>
-                                                <td>@item.imageUrl</td>
-                                                <td><a href="/Admin/AdminAbout/RemoveAbout/@item.aboutId" class="btn btn-outline-danger">Sil</a></td>
-                                                <td><a href="/Admin/AdminAbout/UpdateAbout/@item.aboutId" class="btn btn-outline-success">Güncelle</a></td>
+                                                <td><img src="@item.ImageUrl" width="50" height="50" /></td>
+                                                <td>@item.Name</td>
+                                                <td>@item.Title</td>
+                                                <td>@item.Comment</td>
+                                                <td><a href="/Admin/AdminTestimonial/RemoveTestimonial/@item.TestimonialId" class="btn btn-outline-danger">Sil</a></td>
+                                                <td><a href="/Admin/AdminTestimonial/UpdateTestimonial/@item.TestimonialId" class="btn btn-outline-success">Güncelle</a></td>
                                             </tr>
                                         }
                                     </tbody>
@@ -50,7 +52,7 @@
                             </div>
                         }
                         <div class="d-flex justify-content-end mt-4 none-border">
-                            <a href="/Admin/AdminAbout/CreateAbout/" class="btn btn-outline-info">Yeni Hakkımda Bilgisi Girişi</a>
+                            <a href="/Admin/AdminTestimonial/CreateTestimonial/" class="btn btn-outline-info">Yeni Referans Girişi</a>
                         </div>
                     </div>
                 </div>
