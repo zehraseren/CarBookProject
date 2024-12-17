@@ -1,6 +1,6 @@
 ﻿namespace CB.Dto.ServiceDtos
 {
-    public class ResultServiceDto
+    public class UpdateServiceDto
     {
         public int ServiceId { get; set; }
         public string Title { get; set; }

@@ -1,0 +1,65 @@
+﻿@model List<ResultServiceDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Hizmet Listesi</h4>
+                        <p class="card-subtitle mb-4">
+                            Ana sayfa ve hizmetler bölümünde yer alan hizmet listesinin admin tarafındaki işlemlerini aşağıdaki sayfadan gerçekleştirebilirsiniz. <strong>Tema bütünlüğünü korumak adına 4 tane hizmet girişi yapınız.</strong>
+                        </p>
+                        @if (Model.Count == 0)
+                        {
+                            <div class="alert alert-danger mt-3" role="alert">
+                                <p><i>Daha önce eklenen herhangi bir hizmet <b>bulunamadı.</b> Aşağıdaki kısımları doldurarak yeni bir hizmet ekleyebilirsiniz.</i></p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Başlık</th>
+                                            <th>Açıklama</th>
+                                            <th>Icon URL</th>
+                                            <th>Sil</th>
+                                            <th>Güncelle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <td>@count</td>
+                                                <td>@item.Title</td>
+                                                <td>@item.Description</td>
+                                                <td>@item.IconUrl</td>
+                                                <td><a href="/Admin/AdminService/RemoveService/@item.ServiceId" class="btn btn-outline-danger">Sil</a></td>
+                                                <td><a href="/Admin/AdminService/UpdateService/@item.ServiceId" class="btn btn-outline-success">Güncelle</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        }
+                        <div class="d-flex justify-content-end mt-4 none-border">
+                            <a href="/Admin/AdminService/CreateService/" class="btn btn-outline-info">Yeni Hizmet Girişi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
