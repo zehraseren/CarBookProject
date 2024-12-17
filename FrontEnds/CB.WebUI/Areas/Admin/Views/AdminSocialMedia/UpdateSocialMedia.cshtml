@@ -1,0 +1,38 @@
+﻿@model UpdateSocialMediaDto
+
+@{
+    ViewData["Title"] = "UpdateSocialMedia";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Sosyal Medya Sayfası Veri Girişi Alanı</h4>
+                    <p class="card-subtitle mb-4">Sosyal medya hesaplarınıza ait veri girişlerini buradan yapabilirsiniz. Yeni bir sosyal medya ekleyebilir, mevcut sosyal medya hesaplarınızı silebilir ya da düzenleyebilirsiniz. Icon'larla ilgili listeye ikon listesi üzerinden ulaşabilirsiniz.</p>
+                    <form method="post">
+                        <div class="form-group">
+                            <input type="hidden" asp-for="SocialMediaId" />
+                            <label for="exampleInputTitle">Başlık</label>
+                            <input type="text" class="form-control" id="exampleInputTitle1" asp-for="Name" placeholder="Sosyal Medya Başlığını Giriniz">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUrl">URL</label>
+                            <input type="text" class="form-control" id="exampleInputUrl1" asp-for="Url" placeholder="Sosyal Medya Sayfanızın URL Linkini Giriniz">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputIcon">Icon</label>
+                            <input type="text" class="form-control" id="exampleInputIcon1" asp-for="Icon" placeholder="Sosyal Medya Icon Bilgisini Giriniz">
+                        </div>
+                        <div class="d-flex justify-content-end mt-4 none-border">
+                            <button type="submit" class="btn btn-outline-success mr-3">Sosyal Medya Hesabını Kaydet</button>
+                            <a href="/Admin/AdminSocialMedia/Index/" class="btn btn-outline-danger mr-0">Vazgeç</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
