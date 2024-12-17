@@ -1,0 +1,62 @@
+﻿@model List<ResultFooterAddressDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Adres Listesi</h4>
+                        <p class="card-subtitle mb-4">
+                            İletişim ve Footer kısımlarında yer alan adres bilgilerine ait işlemleri bu sayfadan gerçekleştirebilirsiniz. Harita bilgisini lokasyon değeri olarak Google Map üzerinden alabilirsiniz.
+                        </p>
+                        @if (Model.Count == 0)
+                        {
+                            <div class="alert alert-danger mt-3" role="alert">
+                                <p><i>Daha önce eklenen herhangi bir adres <b>bulunamadı.</b> Aşağıdaki kısımları doldurarak yeni bir adres ekleyebilirsiniz.</i></p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Açıklama</th>
+                                            <th>Adres</th>
+                                            <th>Telefon Numarası</th>
+                                            <th>E-Mail</th>
+                                            <th>Sil</th>
+                                            <th>Güncelle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.Description</td>
+                                                <td>@item.Address</td>
+                                                <td>@item.PhoneNumber</td>
+                                                <td>@item.Email</td>
+                                                <td><a href="/Admin/AdminFooterAddress/RemoveFooterAddress/@item.FooterAddressId" class="btn btn-outline-danger">Sil</a></td>
+                                                <td><a href="/Admin/AdminFooterAddress/UpdateFooterAddress/@item.FooterAddressId" class="btn btn-outline-success">Güncelle</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <div class="d-flex justify-content-end mt-4 none-border">
+                                    <a href="/Admin/AdminFooterAddress/CreateFooterAddress/" class="btn btn-outline-info">Yeni Adres Girişi</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

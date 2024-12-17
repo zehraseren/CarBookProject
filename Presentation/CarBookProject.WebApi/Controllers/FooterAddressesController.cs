@@ -38,7 +38,7 @@ namespace CB.WebApi.Controllers
             return Ok("Alt adres bilgisi eklendi.");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFooterAddress(int id)
         {
             await _mediator.Send(new RemoveFooterAddressCommand(id));

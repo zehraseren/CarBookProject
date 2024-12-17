@@ -1,0 +1,43 @@
+﻿@model CreateFooterAddressDto
+
+@{
+    ViewData["Title"] = "CreateFooterAddress";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Adres Bilgisi Girişi</h4>
+                        <p class="card-subtitle mb-4">Adres alanına ait bilgileri aşağıdaki panelden girebilirsiniz. Tema bütünlüğünün bozulmaması adına lütfen <string>sadece 1 tane veri girişi yapınız.</string> Mevcutta veriniz varsa düzenleyiniz. Yeni veri girişi yaparsanız öncekini siliniz.</p>
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="exampleInputDescription">Açıklama</label>
+                                <input type="text" class="form-control" id="exampleInputDescription1" asp-for="Description" placeholder="Açıklamayı yazınız">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputAddress">Adres</label>
+                                <input type="text" class="form-control" id="exampleInputAddress1" asp-for="Address" placeholder="Adresi yazınız">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPhoneNumber">Telefon Numarası</label>
+                                <input type="tel" class="form-control" id="exampleInputPhoneNumber1" asp-for="PhoneNumber" placeholder="Telefon numarasını yazınız">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail">E-Mail Adresi</label>
+                                <input type="email" class="form-control" id="exampleInputEmail" asp-for="Email" placeholder="E-Mail adresini yazınız">
+                            </div>
+                            <div class="d-flex justify-content-end mt-4 none-border">
+                                <button type="submit" class="btn btn-outline-success mr-3">Adresi Ekle</button>
+                                <a href="/Admin/AdminAuthor/Index/" class="btn btn-outline-danger mr-0">Vazgeç</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
