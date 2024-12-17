@@ -1,0 +1,63 @@
+﻿@model List<ResultLocationDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Konum Bilgileri Alanı</h4>
+                        <p class="card-subtitle mb-4">
+                            Ana sayfa ve araç kiralama sayfasında yer alan araçların alınış ve bırakılış noktalarını temsil eden yer lokasyon kısmıdır. Aşağıda araç kiralama noktalarına ait lokasyon bilgilerinin isimleri yer almaktadır. Sağ tarafta yer alan buton üzerinden bu lokasyonun harita bilgisine erişim sağlayabilirsiniz.
+                        </p>
+                        @if (Model.Count == 0)
+                        {
+                            <div class="alert alert-danger mt-3" role="alert">
+                                <p><i>Daha önce eklenen herhangi bir konum <b>bulunamadı.</b> Aşağıdaki kısımları doldurarak yeni bir konum ekleyebilirsiniz.</i></p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Lokasyon</th>
+                                            <th>Sil</th>
+                                            <th>Güncelle</th>
+                                            <th>Konumu Aç</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <td>@count</td>
+                                                <td>@item.Name</td>
+                                                <td><a href="/Admin/AdminLocation/RemoveLocation/@item.LocationId" class="btn btn-outline-danger">Sil</a></td>
+                                                <td><a href="/Admin/AdminLocation/UpdateLocation/@item.LocationId" class="btn btn-outline-success">Güncelle</a></td>
+                                                <td><a href="/Admin/AdminLocation/LocationDetails/@item.LocationId" class="btn btn-outline-dark">Konumu Aç</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        }
+                        <div class="d-flex justify-content-end mt-4 none-border">
+                            <a href="/Admin/AdminLocation/CreateLocation/" class="btn btn-outline-info">Yeni Konum Girişi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
