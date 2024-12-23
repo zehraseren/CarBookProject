@@ -1,4 +1,5 @@
 ﻿using CB.Domain.Entities;
+using System.Linq.Expressions;
 
 namespace CB.Application.Interfaces.CarInterfaces
 {

@@ -30,11 +30,16 @@ namespace CB.Persistence.Context
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<TagCloud> TagClouds { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<RentACar> RentACars { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CarPricing>()
                 .Property(p => p.Price)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<RentACarProcess>()
+                .Property(p => p.TotalPrice)
                 .HasColumnType("decimal(18,2)");
 
             base.OnModelCreating(modelBuilder);

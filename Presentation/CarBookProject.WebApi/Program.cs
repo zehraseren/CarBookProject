@@ -9,10 +9,12 @@ using CB.Application.Interfaces.BlogInterfaces;
 using CB.Persistence.Repositories.CarRepository;
 using CB.Persistence.Repositories.BlogRepositories;
 using CB.Application.Interfaces.TagCloudInterfaces;
+using CB.Application.Interfaces.RentACarInterfaces;
 using CB.Application.Interfaces.CarPricingInterfaces;
 using CB.Application.Interfaces.StaticticsInterfaces;
 using CB.Persistence.Repositories.CommentRepositories;
 using CB.Persistence.Repositories.TagCloudRepositories;
+using CB.Persistence.Repositories.RentACarRepositories;
 using CB.Persistence.Repositories.CarPricingRepositories;
 using CB.Persistence.Repositories.StaticticsRepositories;
 
@@ -21,14 +23,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddScoped<CarBookContext>();
-
-// For Repository
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
 builder.Services.AddScoped(typeof(IBlogRepository), typeof(BlogRepository));
-builder.Services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepository));
 builder.Services.AddScoped(typeof(ITagCloudRepository), typeof(TagCloudRepository));
+builder.Services.AddScoped(typeof(IRentACarRepository), typeof(RentACarRepository));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(CommentRepository<>));
+builder.Services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepository));
 builder.Services.AddScoped<IStaticticsRepository, StaticticsRepository>();
 
 // For CQRS

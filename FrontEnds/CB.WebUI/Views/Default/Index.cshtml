@@ -1,7 +1,15 @@
-﻿@{
+﻿@model ResultLocationDto
+
+@{
     ViewData["Title"] = "Index";
     Layout = null;
 }
+
+<style>
+    #drop option {
+        color: black;
+    }
+</style>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,44 +28,46 @@
                 <div class="col-md-12	featured-top">
                     <div class="row no-gutters">
                         <div class="col-md-4 d-flex align-items-center">
-                            <form action="#" class="request-form ftco-animate bg-primary">
-                                <h2>Make your trip</h2>
+                            <form method="post" class="request-form ftco-animate bg-primary">
+                                <h2>Şimdi Aracınızı Kiralayın</h2>
                                 <div class="form-group">
-                                    <label for="" class="label">Pick-up location</label>
-                                    <input type="text" class="form-control" placeholder="City, Airport, Station, etc">
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="label">Drop-off location</label>
-                                    <input type="text" class="form-control" placeholder="City, Airport, Station, etc">
+                                    <label for="" class="label">ALIŞ KONUMU</label>
+                                    @Html.DropDownListFor(x => x.LocationId, (List<SelectListItem>)ViewBag.v, new { @class = "form-control", @id = "drop" })
                                 </div>
                                 <div class="d-flex">
                                     <div class="form-group mr-2">
-                                        <label for="" class="label">Pick-up date</label>
-                                        <input type="text" class="form-control" id="book_pick_date" placeholder="Date">
+                                        <label for="" class="label">ALIŞ TARİHİ</label>
+                                        <input type="text" class="form-control" name="bookPickDate" id="book_pick_date" placeholder="Tarih Seçiniz">
                                     </div>
                                     <div class="form-group ml-2">
-                                        <label for="" class="label">Drop-off date</label>
-                                        <input type="text" class="form-control" id="book_off_date" placeholder="Date">
+                                        <label for="" class="label">İADE TARİHİ</label>
+                                        <input type="text" class="form-control" name="bookOffDate" id="book_off_date" placeholder="Tarih Seçiniz">
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="form-group mr-2">
+                                        <label for="" class="label">ALIŞ SAATİ</label>
+                                        <input type="text" class="form-control" name="timePick" id="" placeholder="Saat">
+                                    </div>
+                                    <div class="form-group ml-2">
+                                        <label for="" class="label">İADE SAATİ</label>
+                                        <input type="text" class="form-control" name="timeOff" id="" placeholder="Saat">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="" class="label">Pick-up time</label>
-                                    <input type="text" class="form-control" id="time_pick" placeholder="Time">
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">
+                                    <button type="submit" class="btn btn-secondary py-3 px-4">Uygun Araçları Listele</button>
                                 </div>
                             </form>
                         </div>
                         <div class="col-md-8 d-flex align-items-center">
                             <div class="services-wrap rounded-right w-100">
-                                <h3 class="heading-section mb-4">Better Way to Rent Your Perfect Cars</h3>
+                                <h3 class="heading-section mb-4">Araç Kiralamanın En Basit Yolu</h3>
                                 <div class="row d-flex mb-4">
                                     <div class="col-md-4 d-flex align-self-stretch ftco-animate">
                                         <div class="services w-100 text-center">
                                             <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-route"></span></div>
                                             <div class="text w-100">
-                                                <h3 class="heading mb-2">Choose Your Pickup Location</h3>
+                                                <h3 class="heading mb-2">Almak İstediğin Konumu Seç</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -65,7 +75,7 @@
                                         <div class="services w-100 text-center">
                                             <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-handshake"></span></div>
                                             <div class="text w-100">
-                                                <h3 class="heading mb-2">Select the Best Deal</h3>
+                                                <h3 class="heading mb-2">En Uygun Araçları Gör</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -73,12 +83,12 @@
                                         <div class="services w-100 text-center">
                                             <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-rent"></span></div>
                                             <div class="text w-100">
-                                                <h3 class="heading mb-2">Reserve Your Rental Car</h3>
+                                                <h3 class="heading mb-2">Kiralamayı Tamamla, İşte Bu Kadar!</h3>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <p><a href="#" class="btn btn-primary py-3 px-4">Reserve Your Perfect Car</a></p>
+                                <p><a href="#" class="btn btn-primary py-3 px-4">Mükemmel Aracınızı Rezerve Edin</a></p>
                             </div>
                         </div>
                     </div>
@@ -98,7 +108,7 @@
     @await Component.InvokeAsync("_TestimonialComponentPartial")
 
     @await Component.InvokeAsync("_GetLast3BlogsWithAuthorListComponentPartial")
-    
+
     @await Component.InvokeAsync("_DefaultStatisticsComponentComponentPartial")
 
     @await Component.InvokeAsync("_FooterUILayoutComponentPartial")
