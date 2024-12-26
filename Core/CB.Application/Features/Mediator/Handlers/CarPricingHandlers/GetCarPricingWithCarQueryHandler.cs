@@ -24,6 +24,7 @@ namespace CB.Application.Features.Mediator.Handlers.CarPricingHandlers
                 CarPricingId = x.CarPricingId,
                 CoverImageUrl = x.Car.CoverImageUrl,
                 Model = x.Car.Model,
+                CarId = x.CarId,
             }).ToList();
         }
     }

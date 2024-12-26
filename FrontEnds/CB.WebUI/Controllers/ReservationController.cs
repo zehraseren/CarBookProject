@@ -1,0 +1,55 @@
+﻿using System.Text;
+using Newtonsoft.Json;
+using CB.Dto.LocationDtos;
+using CB.Dto.ReservationDtos;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace CB.WebUI.Controllers
+{
+    public class ReservationController : Controller
+    {
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public ReservationController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index(int id)
+        {
+            ViewBag.v1 = "Araç Kiralama";
+            ViewBag.v2 = "Araç Rezervasyon Formu";
+            ViewBag.v3 = id;
+
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync("https://localhost:44347/api/Locations");
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData);
+            List<SelectListItem> values2 = (from x in values
+                                            select new SelectListItem
+                                            {
+                                                Text = x.Name,
+                                                Value = x.LocationId.ToString(),
+                                            }).ToList();
+            ViewBag.locations = values2;
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(CreateReservationDto crdto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(crdto);
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessge = await client.PostAsync("https://localhost:44347/api/Reservations", content);
+            if (responseMessge.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "Default");
+            }
+            return View();
+        }
+    }
+}

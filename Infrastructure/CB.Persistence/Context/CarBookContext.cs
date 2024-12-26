@@ -31,6 +31,7 @@ namespace CB.Persistence.Context
         public DbSet<TagCloud> TagClouds { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<RentACar> RentACars { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,6 +42,23 @@ namespace CB.Persistence.Context
             modelBuilder.Entity<RentACarProcess>()
                 .Property(p => p.TotalPrice)
                 .HasColumnType("decimal(18,2)");
+
+            // Reservation entity'si için aşağıdaki gibi yapılandırma yapılır. Burada amaç bir tablo içerisinde iki farklı ID'yi karşı tarafın tek ID'si ile birleştirmek.
+            modelBuilder.Entity<Reservation>()
+                // Reservation entity'sinde bulunan DropOffLocation navigation property’si tanımlanır.
+                .HasOne(x => x.PickUpLocation)
+                // Location entity'sinin birden fazla Reservation ile ilişkilendirilebileceğini belirtilir.
+                .WithMany(y => y.PickUpReservations)
+                // Reservation tablosunda DropOffLocationId isimli bir foreign key olduğunu tanımlanır.
+                .HasForeignKey(z => z.PickUpLocationId)
+                // PickUpLocationId silindiğinde, ilgili Reservation kayıtlarında PickUpLocationId değerinin NULL olmasını sağlanır. (Cascade delete uygulanmıyor).
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<Reservation>()
+                .HasOne(x => x.DropOffLocation)
+                .WithMany(y => y.DropOffReservations)
+                .HasForeignKey(z => z.DropOffLocationId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
 
             base.OnModelCreating(modelBuilder);
         }
