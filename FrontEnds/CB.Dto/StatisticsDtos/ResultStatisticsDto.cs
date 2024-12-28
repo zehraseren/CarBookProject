@@ -2,21 +2,21 @@
 {
     public class ResultStatisticsDto
     {
-        public int CarCount { get; set; }
-        public int BlogCount { get; set; }
-        public int LocationCount { get; set; }
-        public int AuthorCount { get; set; }
-        public int BrandCount { get; set; }
-        public decimal AvgRentPriceForDaily { get; set; }
-        public decimal AvgRentPriceForWeekly { get; set; }
-        public decimal AvgRentPriceForMonthly { get; set; }
-        public int CarCountByTransmissionIsAuto { get; set; }
-        public string BrandNameByMaxCarCount { get; set; }
-        public string BlogTitleByMaxBlogComment { get; set; }
-        public int CarCountByMileageLessThan10000 { get; set; }
-        public int CarCountByFuelGasolineOrDiesel { get; set; }
-        public int CarCountByFuelElectric { get; set; }
-        public string CarBrandAndModelByRentPriceForDailyMax { get; set; }
-        public string CarBrandAndModelByRentPriceForDailyMin { get; set; }
+        public int carCount { get; set; }
+        public int blogCount { get; set; }
+        public int locationCount { get; set; }
+        public int authorCount { get; set; }
+        public int brandCount { get; set; }
+        public decimal avgRentPriceForDaily { get; set; }
+        public decimal avgRentPriceForWeekly { get; set; }
+        public decimal avgRentPriceForMonthly { get; set; }
+        public int carCountByTransmissionIsAuto { get; set; }
+        public string brandNameByMaxCarCount { get; set; }
+        public string blogTitleByMaxBlogComment { get; set; }
+        public int carCountByMileageLessThan10000 { get; set; }
+        public int carCountByFuelGasolineOrDiesel { get; set; }
+        public int carCountByFuelElectric { get; set; }
+        public string carBrandAndModelByRentPriceForDailyMax { get; set; }
+        public string carBrandAndModelByRentPriceForDailyMin { get; set; }
     }
 }
