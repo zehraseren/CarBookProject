@@ -31,5 +31,4 @@ namespace CB.Application.Features.CQRS.Handlers.CarHandlers
             }).ToList();
         }
     }
-
 }

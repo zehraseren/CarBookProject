@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using CB.Dto.CarDtos;
 using Newtonsoft.Json;
 using CB.Dto.LocationDtos;
 using CB.Dto.ReservationDtos;
@@ -24,16 +25,24 @@ namespace CB.WebUI.Controllers
             ViewBag.v3 = id;
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44347/api/Locations");
-            var jsonData = await responseMessage.Content.ReadAsStringAsync();
-            var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData);
-            List<SelectListItem> values2 = (from x in values
-                                            select new SelectListItem
-                                            {
-                                                Text = x.Name,
-                                                Value = x.LocationId.ToString(),
-                                            }).ToList();
-            ViewBag.locations = values2;
+            var locationResponseMessage = await client.GetAsync("https://localhost:44347/api/Locations");
+            var locationJsonData = await locationResponseMessage.Content.ReadAsStringAsync();
+            var locations = JsonConvert.DeserializeObject<List<ResultLocationDto>>(locationJsonData);
+            List<SelectListItem> locationItems = (from x in locations
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.Name,
+                                                      Value = x.LocationId.ToString(),
+                                                  }).ToList();
+            ViewBag.locations = locationItems;
+
+            var carResponseMessage = await client.GetAsync($"https://localhost:44347/api/Cars/{id}");
+            if (carResponseMessage.IsSuccessStatusCode)
+            {
+                var carJsonData = await carResponseMessage.Content.ReadAsStringAsync();
+                var car = JsonConvert.DeserializeObject<ResultCarWithBrandsDto>(carJsonData);
+                ViewBag.carName = car.BrandName + " " + car.Model;
+            }
 
             return View();
         }
