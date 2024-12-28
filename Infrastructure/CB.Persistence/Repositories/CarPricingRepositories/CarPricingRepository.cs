@@ -1,8 +1,9 @@
 ﻿using CB.Domain.Entities;
+using CB.Application.Enums;
 using CB.Persistence.Context;
-using CB.Application.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using CB.Application.Interfaces.CarPricingInterfaces;
+using CB.Application.ViewModels;
 
 namespace CB.Persistence.Repositories.CarPricingRepositories
 {
@@ -21,38 +22,22 @@ namespace CB.Persistence.Repositories.CarPricingRepositories
             return values;
         }
 
-        // Daha sonra bakılacak!!!
         public List<CarPricingViewModel> GetCarPricingWithTimePeriod()
         {
-            List<CarPricingViewModel> values = new List<CarPricingViewModel>();
-            using (var command = _context.Database.GetDbConnection().CreateCommand())
-            {
-                command.CommandText = "Select * From (Select Model,Name,CoverImageUrl,PricingId, Price From CarPricings Inner Join Cars On Cars.CarId=CarPricings.CarId Inner Join Brands On Brands.BrandId=Cars.BrandId) As SourceTable Pivot (Sum(Price) For PricingId In ([2],[3],[4])) as PivotTable";
-                command.CommandType = System.Data.CommandType.Text;
-                _context.Database.OpenConnection();
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        CarPricingViewModel cpvm = new CarPricingViewModel()
-                        {
-                            Model = reader["Model"].ToString(),
-                            Brand = reader["Name"].ToString(),
-                            CoverImageUrl = reader["CoverImageUrl"].ToString(),
-                            Prices = new List<decimal>
-                            {
-                                Convert.ToDecimal(reader["2"]),
-                                Convert.ToDecimal(reader["3"]),
-                                Convert.ToDecimal(reader["4"])
-                            }
-                        };
-                        values.Add(cpvm);
-                    }
-                }
-                _context.Database.CloseConnection();
-            }
+            var values = from cp in _context.CarPricings
+                         join c in _context.Cars on cp.CarId equals c.CarId
+                         join b in _context.Brands on c.BrandId equals b.BrandId
+                         group cp by new { b.Name, c.Model, c.CoverImageUrl } into grouped
+                         select new CarPricingViewModel
+                         {
+                             Model = grouped.Key.Name + " " + grouped.Key.Model,
+                             CoverImageUrl = grouped.Key.CoverImageUrl,
+                             DailyPrice = grouped.Where(x => x.PricingId == (int)PricingType.Daily).Sum(x => x.Price),
+                             WeeklyPrice = grouped.Where(x => x.PricingId == (int)PricingType.Weekly).Sum(x => x.Price),
+                             MonthlyPrice = grouped.Where(x => x.PricingId == (int)PricingType.Monthly).Sum(x => x.Price),
+                         };
 
-            return values;
+            return values.ToList();
         }
     }
 }

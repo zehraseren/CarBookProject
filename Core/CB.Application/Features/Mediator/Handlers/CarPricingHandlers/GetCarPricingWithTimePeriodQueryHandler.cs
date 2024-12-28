@@ -20,11 +20,10 @@ namespace CB.Application.Features.Mediator.Handlers.CarPricingHandlers
             return values.Select(x => new GetCarPricingWithTimePeriodQueryResult
             {
                 Model = x.Model,
-                Brand = x.Brand,
                 CoverImageUrl = x.CoverImageUrl,
-                DailyPrice = x.Prices[0],
-                WeeklyPrice = x.Prices[1],
-                MonthlyPrice = x.Prices[2],
+                DailyPrice = x.DailyPrice,
+                WeeklyPrice = x.WeeklyPrice,
+                MonthlyPrice = x.MonthlyPrice,
             }).ToList();
         }
     }
