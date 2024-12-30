@@ -21,6 +21,11 @@ namespace CB.WebUI.ViewComponents.BlogViewComponents
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<GetBlogByIdDto>(jsonData);
+
+                var commentResponse = await client.GetAsync($"https://localhost:44347/api/Comments/CommentCountByBlog?id={id}");
+                var jsonData2 = await commentResponse.Content.ReadAsStringAsync();
+                ViewBag.commentCount = int.Parse(jsonData2);
+
                 return View(values);
             }
             return View();

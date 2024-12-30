@@ -53,5 +53,10 @@ namespace CB.Persistence.Repositories.CommentRepositories
             _context.Comments.Update(t);
             _context.SaveChanges();
         }
+
+        public int GetCountCommentByBlog(int id)
+        {
+            return _context.Comments.Where(x => x.BlogId == id).Count();
+        }
     }
 }
