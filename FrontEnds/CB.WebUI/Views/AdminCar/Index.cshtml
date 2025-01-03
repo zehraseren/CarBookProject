@@ -28,6 +28,7 @@
                                         <th>Sil</th>
                                         <th>Güncelle</th>
                                         <th>Detaylar</th>
+                                        <th>Özellik Ata</th>
                                         <th>Sitede Gör</th>
                                         <th>Fiyat Bilgileri</th>
                                     </tr>
@@ -44,9 +45,10 @@
                                             <td>@item.Mileage</td>
                                             <td><a href="/AdminCar/RemoveCar/@item.CarId" class="btn btn-outline-danger">Sil</a></td>
                                             <td><a href="/AdminCar/UpdateCar/@item.CarId" class="btn btn-outline-success">Güncelle</a></td>
-                                            <td><a href="/AdminCar/CarDetails/@item.CarId" class="btn btn-outline-dark">Detaylar</a></td>
-                                            <td><a href="/AdminCar/ViewCarOnSite/@item.CarId" class="btn btn-outline-warning">Sitede Gör</a></td>
-                                            <td><a href="/AdminCar/ViewCarOnSite/@item.CarId" class="btn btn-outline-warning">Fiyat Bilgileri</a></td>
+                                            <td><a href="/Admin/AdminCarFeatureDetail/Index/@item.CarId" class="btn btn-outline-dark">Detaylar</a></td>
+                                            <td><a href="/Admin/AdminCarFeatureDetail/CreateFeatureByCarId/@item.CarId" class="btn btn-outline-secondary">Özellik Ata</a></td>
+                                            <td><a href="/Admin/AdminCar/ViewCarOnSite/@item.CarId" class="btn btn-outline-warning">Sitede Gör</a></td>
+                                            <td><a href="/Admin/AdminCar/ViewCarPriceOnSite/@item.CarId" class="btn btn-outline-info">Fiyat Bilgileri</a></td>
                                         </tr>
                                     }
                                 </tbody>

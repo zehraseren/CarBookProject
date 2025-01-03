@@ -12,11 +12,13 @@ using CB.Application.Interfaces.TagCloudInterfaces;
 using CB.Application.Interfaces.RentACarInterfaces;
 using CB.Application.Interfaces.CarPricingInterfaces;
 using CB.Application.Interfaces.StaticticsInterfaces;
+using CB.Application.Interfaces.CarFeatureInterfaces;
 using CB.Persistence.Repositories.CommentRepositories;
 using CB.Persistence.Repositories.TagCloudRepositories;
 using CB.Persistence.Repositories.RentACarRepositories;
 using CB.Persistence.Repositories.CarPricingRepositories;
 using CB.Persistence.Repositories.StaticticsRepositories;
+using CB.Persistence.Repositories.CarFeatureRepositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +33,7 @@ builder.Services.AddScoped(typeof(IRentACarRepository), typeof(RentACarRepositor
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(CommentRepository<>));
 builder.Services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepository));
 builder.Services.AddScoped<IStaticticsRepository, StaticticsRepository>();
+builder.Services.AddScoped<ICarFeatureRepository, CarFeatureRepository>();
 
 // For CQRS
 builder.Services.ContainerDependecies();

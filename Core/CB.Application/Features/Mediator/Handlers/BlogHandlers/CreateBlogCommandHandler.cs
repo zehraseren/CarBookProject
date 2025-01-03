@@ -7,7 +7,7 @@ namespace CB.Application.Features.Mediator.Handlers.BlogHandlers
 {
     public class CreateBlogCommandHandler : IRequestHandler<CreateBlogCommand>
     {
-        public readonly IRepository<Blog> _repository;
+        private readonly IRepository<Blog> _repository;
 
         public CreateBlogCommandHandler(IRepository<Blog> repository)
         {
