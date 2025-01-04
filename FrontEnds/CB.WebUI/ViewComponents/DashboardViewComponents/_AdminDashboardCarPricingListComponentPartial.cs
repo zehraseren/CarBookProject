@@ -2,18 +2,18 @@
 using CB.Dto.CarPricingDtos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CB.WebUI.Controllers
+namespace CB.WebUI.ViewComponents.DashboardViewComponents
 {
-    public class CarPricingController : Controller
+    public class _AdminDashboardCarPricingListComponentPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public CarPricingController(IHttpClientFactory httpClientFactory)
+        public _AdminDashboardCarPricingListComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
             ViewBag.v1 = "Paketler";
             ViewBag.v2 = "Araç Fiyat Paketleri";

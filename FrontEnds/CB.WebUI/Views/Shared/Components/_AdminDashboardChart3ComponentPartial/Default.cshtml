@@ -1,0 +1,52 @@
+﻿<script src="~/chart.js"></script>
+
+<div class="col-lg-4">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title d-inline-block">Konum Verileri</h4>
+            <div style="height: 260px;">
+                <canvas id="myChart3" height="220px"></canvas>
+                <script>
+                    var values = document.getElementById("myChart3").getContext('2d');
+                    var myChart = new Chart(values, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Sabiha Gökçen H.L.', 'Kadıköy Rıhtım', 'Kartal Köprüsü', 'İstanbul Havalimanı', 'Maltepe Sahil', 'Bahçelievler'],
+                            datasets: [{
+                                label: "Araç - Lokasyon Grafiği",
+                                data: [25, 5, 2, 6, 7, 18, 13],
+                                backgroundColor: [
+                                    'rgb(128, 0, 128, 0.7)',
+                                    'rgb(105, 105, 105, 0.7)',
+                                    'rgb(25, 25, 112, 0.7)',
+                                    'rgb(0, 49, 53, 0.7)',
+                                    'rgb(0, 128, 0, 0.7)',
+                                    'rgb(0, 139, 139, 0.7)',
+                                ],
+                                borderColor: [
+                                    'rgb(128, 0, 128)',
+                                    'rgb(105, 105, 105)',
+                                    'rgb(25, 25, 112)',
+                                    'rgb(0, 49, 53)',
+                                    'rgb(0, 128, 0)',
+                                    'rgb(0, 139, 139)',
+                                ],
+                                borderWidht:1
+                            }]
+                        }
+                    });
+                </script>
+            </div>
+            <div class="row text-center mt-4">
+                <div class="col-6">
+                    <h4>7</h4>
+                    <p class="text-muted mb-0">Lokasyon Sayısı</p>
+                </div>
+                <div class="col-6">
+                    <h4>11</h4>
+                    <p class="text-muted mb-0">Müsait Araç Sayısı</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

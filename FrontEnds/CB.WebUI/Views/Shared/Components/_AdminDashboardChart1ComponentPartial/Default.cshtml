@@ -1,0 +1,48 @@
+﻿<script src="~/chart.js"></script>
+@* Eğer script dosyası en başta eklenmezse, grafik oluşturma kodları çalışmaz çünkü gerekli olan "chart.js" kütüphanesi henüz yüklenmemiş olur. Bu nedenle, "chart.js"i dahil etme kodunu, JavaScript kodlarından önce yerleştirmek gerekmektedir. *@
+
+<div class="col-lg-4">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title d-inline-block">Yıllık Kiralama Sayıları</h4>
+            <div style="height: 260px;">
+                <canvas id="myChart1" height="220px"></canvas>
+                <script>
+                    // Canvas elemanı seçilir ve 2D grafik bağlamı alınır.
+                    var values = document.getElementById("myChart1").getContext('2d');
+                    // chart.js kütüphanesi ile bir grafik oluşturulur.
+                    var myChart = new Chart(values, {
+                        type: 'line', // Grafik türü "line" (çizgi grafiği) olarak belirtilir.
+                        data: {
+                            labels: ['2020','2021','2022','2023','2024'], // X ekseindeki kategorik değerler (yıllar) tanımlanır.
+                            datasets: [{
+                                label: "Yıllık Kiralama Grafiği", // Grafiğin başlığı belirtilir.
+                                data: [285,245,185,366,458], // Y ekseni değerleri tanımlanır.
+                                borderColor:  'rgb(0, 128, 0, 0.7)', // Çizginin rengi tanımlanır.
+                                borderWidht: 1 // Çizgi kalınlığı ayarlanır.
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero:true // Y ekseninin sıfırdan başlanması sağlanır.
+                                }
+                            }
+                        }
+                    });
+                </script>
+            </div>
+
+            <div class="row text-center mt-4">
+                <div class="col-6">
+                    <h4>₺ 367.850</h4>
+                    <p class="text-muted mb-0">Son 1 Aylık  Ciro</p>
+                </div>
+                <div class="col-6">
+                    <h4>₺ 7850</h4>
+                    <p class="text-muted mb-0">Bugünkü Kazanç</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

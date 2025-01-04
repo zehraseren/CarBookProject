@@ -1,0 +1,46 @@
+﻿@model List<ResultCarPricingListWithModelDto>
+
+<style>
+    .limited-table {
+        max-height: 350px;
+        overflow-y: auto;
+    }
+
+    .table thead th {
+        height: 70px;
+    }
+</style>
+
+<div class="col-xl-6">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Araç Kiralama Ücretleri</h4>
+            <p class="card-subtitle mb-4 font-size-13">
+                Bazı araçların günlük/haftalık/aylık fiyatları
+            </p>
+            <div class="table-responsive limited-table">
+                <table class="table table-centered table-hover table-xl mb-0" id="recent-orders">
+                    <thead>
+                        <tr>
+                            <th class="border-top-0">Model</th>
+                            <th class="border-top-0">Günlük</th>
+                            <th class="border-top-0">Haftalık</th>
+                            <th class="border-top-0">Aylık</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-truncate">@item.Model</td>
+                                <td class="text-truncate">₺ @item.DailyPrice</td>
+                                <td class="text-truncate">₺ @item.WeeklyPrice</td>
+                                <td class="text-truncate">₺ @item.MonthlyPrice</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
