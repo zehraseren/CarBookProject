@@ -1,0 +1,20 @@
+﻿@model List<List<ResultCarFeatureByCarIdDto>>
+
+<div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
+    <div class="row">
+        @foreach (var column in Model)
+        {
+            <div class="col-md-4">
+                <ul class="features">
+                    @foreach (var feature in column)
+                    {
+                        <li class="@(feature.Available?"check":"remove")">
+                            <span class="ion-ios-@(feature.Available?"checkmark":"close")"></span>
+                            @feature.FeatureName
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+</div>

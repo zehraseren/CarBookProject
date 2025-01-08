@@ -5,6 +5,7 @@ using CB.Application.Features.CQRS.Handlers.BrandHandlers;
 using CB.Application.Features.CQRS.Handlers.BannerHandlers;
 using CB.Application.Features.CQRS.Handlers.ContactHandlers;
 using CB.Application.Features.CQRS.Handlers.CategoryHandlers;
+using CB.Application.Features.Mediator.Handlers.ReviewHandlers;
 
 namespace CB.Application.Container
 {
@@ -49,6 +50,10 @@ namespace CB.Application.Container
             services.AddScoped<CreateContactCommandHandler>();
             services.AddScoped<RemoveContactCommandHandler>();
             services.AddScoped<UpdateContactCommandHandler>();
+
+            services.AddScoped<GetReviewByCarIdQueryHandler>();
+            services.AddScoped<CreateReviewCommandHandler>();
+            services.AddScoped<UpdateReviewCommandHandler>();
         }
     }
 }

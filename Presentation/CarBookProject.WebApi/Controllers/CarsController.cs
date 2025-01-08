@@ -2,9 +2,6 @@
 using CB.Application.Features.CQRS.Queries.CarQueries;
 using CB.Application.Features.CQRS.Handlers.CarHandlers;
 using CB.Application.Features.CQRS.Commands.CarCommands;
-using CB.Application.Services;
-using CB.Domain.Entities;
-using System.Linq.Expressions;
 
 namespace CB.WebApi.Controllers
 {

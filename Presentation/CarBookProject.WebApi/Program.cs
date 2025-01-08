@@ -7,18 +7,22 @@ using CB.Application.Features.Repository;
 using CB.Application.Interfaces.CarInterfaces;
 using CB.Application.Interfaces.BlogInterfaces;
 using CB.Persistence.Repositories.CarRepository;
+using CB.Application.Interfaces.ReviewInterfaces;
 using CB.Persistence.Repositories.BlogRepositories;
 using CB.Application.Interfaces.TagCloudInterfaces;
 using CB.Application.Interfaces.RentACarInterfaces;
 using CB.Application.Interfaces.CarPricingInterfaces;
 using CB.Application.Interfaces.StaticticsInterfaces;
 using CB.Application.Interfaces.CarFeatureInterfaces;
+using CB.Persistence.Repositories.ReviewRepositories;
 using CB.Persistence.Repositories.CommentRepositories;
 using CB.Persistence.Repositories.TagCloudRepositories;
 using CB.Persistence.Repositories.RentACarRepositories;
 using CB.Persistence.Repositories.CarPricingRepositories;
 using CB.Persistence.Repositories.StaticticsRepositories;
 using CB.Persistence.Repositories.CarFeatureRepositories;
+using CB.Application.Interfaces.CarDescriptionInterfaces;
+using CB.Persistence.Repositories.CarDescriptionRepositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,8 +36,10 @@ builder.Services.AddScoped(typeof(ITagCloudRepository), typeof(TagCloudRepositor
 builder.Services.AddScoped(typeof(IRentACarRepository), typeof(RentACarRepository));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(CommentRepository<>));
 builder.Services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepository));
-builder.Services.AddScoped<IStaticticsRepository, StaticticsRepository>();
-builder.Services.AddScoped<ICarFeatureRepository, CarFeatureRepository>();
+builder.Services.AddScoped(typeof(IStaticticsRepository), typeof(StaticticsRepository));
+builder.Services.AddScoped(typeof(ICarFeatureRepository), typeof(CarFeatureRepository));
+builder.Services.AddScoped(typeof(ICarDescriptionRepository), typeof(CarDescriptionRepository));
+builder.Services.AddScoped(typeof(IReviewRepository), typeof(ReviewRepository));
 
 // For CQRS
 builder.Services.ContainerDependecies();

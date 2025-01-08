@@ -24,4 +24,8 @@
     <ProjectReference Include="..\CB.Dto\CB.Dto.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Shared\Components\_CarDetailCommentsByCarIdComponentPartial\" />
+  </ItemGroup>
+
 </Project>
