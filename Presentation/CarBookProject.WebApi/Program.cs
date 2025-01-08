@@ -1,8 +1,10 @@
+using FluentValidation;
 using CB.Persistence.Context;
 using CB.Application.Services;
 using CB.Application.Container;
 using CB.Application.Interfaces;
 using CB.Persistence.Repositories;
+using FluentValidation.AspNetCore;
 using CB.Application.Features.Repository;
 using CB.Application.Interfaces.CarInterfaces;
 using CB.Application.Interfaces.BlogInterfaces;
@@ -23,6 +25,7 @@ using CB.Persistence.Repositories.StaticticsRepositories;
 using CB.Persistence.Repositories.CarFeatureRepositories;
 using CB.Application.Interfaces.CarDescriptionInterfaces;
 using CB.Persistence.Repositories.CarDescriptionRepositories;
+using CB.Application.Features.Mediator.Commands.ReviewCommands;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +49,11 @@ builder.Services.ContainerDependecies();
 
 // For Mediator
 builder.Services.AddApplicationService(builder.Configuration);
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateReviewCommand>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateReviewCommand>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

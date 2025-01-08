@@ -24,8 +24,12 @@ namespace CB.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRiview(CreateReviewCommand command)
+        public async Task<IActionResult> CreateReview(CreateReviewCommand command)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             await _mediator.Send(command);
             return Ok("Ekleme işlemi başarılı");
         }
@@ -33,6 +37,10 @@ namespace CB.WebApi.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateReview(UpdateReviewCommand command)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             await _mediator.Send(command);
             return Ok("Güncelleme işlemi başarılı");
         }
