@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using CB.Domain.Entities;
+using CB.Application.Enums;
 using CB.Application.Interfaces;
 using CB.Application.Features.Mediator.Commands.AppUserCommands;
-using CB.Application.Enums;
 
 namespace CB.Application.Features.Mediator.Handlers.AppUserHandlers
 {
@@ -22,6 +22,9 @@ namespace CB.Application.Features.Mediator.Handlers.AppUserHandlers
                 Username = request.Username,
                 Password = request.Password,
                 AppRoleId = (int)RoleType.Member,
+                Name = request.Name,
+                Surname = request.Surname,
+                Email = request.Email,
             });
         }
     }
