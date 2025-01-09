@@ -1,23 +1,31 @@
+using System.Text;
 using FluentValidation;
+using CB.Application.Tools;
 using CB.Persistence.Context;
 using CB.Application.Services;
 using CB.Application.Container;
 using CB.Application.Interfaces;
 using CB.Persistence.Repositories;
 using FluentValidation.AspNetCore;
+using Microsoft.IdentityModel.Tokens;
 using CB.Application.Features.Repository;
 using CB.Application.Interfaces.CarInterfaces;
 using CB.Application.Interfaces.BlogInterfaces;
 using CB.Persistence.Repositories.CarRepository;
 using CB.Application.Interfaces.ReviewInterfaces;
+using CB.Application.Interfaces.AppUserInterfaces;
+using CB.Application.Interfaces.AppRoleInterfaces;
 using CB.Persistence.Repositories.BlogRepositories;
 using CB.Application.Interfaces.TagCloudInterfaces;
 using CB.Application.Interfaces.RentACarInterfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using CB.Application.Interfaces.CarPricingInterfaces;
 using CB.Application.Interfaces.StaticticsInterfaces;
 using CB.Application.Interfaces.CarFeatureInterfaces;
 using CB.Persistence.Repositories.ReviewRepositories;
 using CB.Persistence.Repositories.CommentRepositories;
+using CB.Persistence.Repositories.AppUserRepositories;
+using CB.Persistence.Repositories.AppRoleRepositories;
 using CB.Persistence.Repositories.TagCloudRepositories;
 using CB.Persistence.Repositories.RentACarRepositories;
 using CB.Persistence.Repositories.CarPricingRepositories;
@@ -43,6 +51,8 @@ builder.Services.AddScoped(typeof(IStaticticsRepository), typeof(StaticticsRepos
 builder.Services.AddScoped(typeof(ICarFeatureRepository), typeof(CarFeatureRepository));
 builder.Services.AddScoped(typeof(ICarDescriptionRepository), typeof(CarDescriptionRepository));
 builder.Services.AddScoped(typeof(IReviewRepository), typeof(ReviewRepository));
+builder.Services.AddScoped(typeof(IAppUserRepository), typeof(AppUserRepository));
+builder.Services.AddScoped(typeof(IAppRoleRepository), typeof(AppRoleRepository));
 
 // For CQRS
 builder.Services.ContainerDependecies();
@@ -54,6 +64,20 @@ builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateReviewCommand>();
 builder.Services.AddValidatorsFromAssemblyContaining<UpdateReviewCommand>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.RequireHttpsMetadata = false;
+    opt.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidAudience = JwtTokenDefaults.ValidAudience,
+        ValidIssuer = JwtTokenDefaults.ValidIssuer,
+        ClockSkew = TimeSpan.Zero,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true
+    };
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -71,6 +95,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using CB.Application.Features.Mediator.Commands.ReviewCommands;
 using CB.Application.Features.Mediator.Queries.ReviewQueries;
+using CB.Application.Features.Mediator.Commands.ReviewCommands;
 
 namespace CB.WebApi.Controllers
 {
