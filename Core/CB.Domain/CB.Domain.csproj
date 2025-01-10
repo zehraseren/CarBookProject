@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\FrontEnds\CB.WebUI\CB.WebUI.csproj" />
+  </ItemGroup>
+
 </Project>
