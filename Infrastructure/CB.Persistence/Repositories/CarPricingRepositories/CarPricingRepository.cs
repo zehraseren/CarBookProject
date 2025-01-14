@@ -2,8 +2,8 @@
 using CB.Application.Enums;
 using CB.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
-using CB.Application.Interfaces.CarPricingInterfaces;
 using CB.Application.ViewModels;
+using CB.Application.Interfaces.CarPricingInterfaces;
 
 namespace CB.Persistence.Repositories.CarPricingRepositories
 {

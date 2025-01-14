@@ -23,20 +23,26 @@ namespace CB.WebApi.Hubs
             // "https://localhost:44347/api/Statictics/GetCarCount" adresine istek atılır.
             var responseMessage = await client.GetAsync("https://localhost:44347/api/Statictics/GetCarCount");
 
+            // Eğer API'ye yapılan istek başarılı olduysa
             if (responseMessage.IsSuccessStatusCode)
             {
+                // API'den dönen yanıt içeriği bir string'e dönüştürülür
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                // API'den dönen yanıtın içeriği okunur ve bir string'e dönüştürülür.
-                // Bu içerik, araç sayısını temsil eder.
+
+                // JSON verisi, ResultStatisticsDto tipine deserialize edilir.
+                // Bu işlem, API'den gelen veriyi bir C# nesnesine dönüştürür.
                 var values = JsonConvert.DeserializeObject<ResultStatisticsDto>(jsonData);
 
-                // SignalR üzerinden tüm bağlı istemcilere "ReceiveCarCount" adlı bir mesaj gönderilir
-                // Gönderilen mesajın içeriği, araç sayısını içeren "values" string'idir.
-                // Bu işlem, tüm istemcilere güncel araç sayısını iletmek için yapılır.
+                // SignalR üzerinden tüm bağlı istemcilere "ReceiveCarCount" adlı bir mesaj gönderilir.
+                // Bu mesaj, araç sayısını temsil eden "values.carCount" değerini içerir.
+                // Tüm istemciler, güncel araç sayısını alarak arayüzlerini günceller.
                 await Clients.All.SendAsync("ReceiveCarCount", values.carCount);
             }
             else
             {
+                // API'ye yapılan istek başarısız olduysa,
+                // SignalR üzerinden tüm bağlı istemcilere "ReceiveCarCount" mesajı gönderilir.
+                // Bu mesaj, araç sayısı yerine 0 olarak gönderilir.
                 await Clients.All.SendAsync("ReceiveCarCount", 0);
             }
         }

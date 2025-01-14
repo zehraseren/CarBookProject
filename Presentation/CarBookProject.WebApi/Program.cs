@@ -1,4 +1,5 @@
 using System.Text;
+using CB.WebApi.Hubs;
 using FluentValidation;
 using CB.Application.Tools;
 using CB.Persistence.Context;
@@ -34,10 +35,22 @@ using CB.Persistence.Repositories.CarFeatureRepositories;
 using CB.Application.Interfaces.CarDescriptionInterfaces;
 using CB.Persistence.Repositories.CarDescriptionRepositories;
 using CB.Application.Features.Mediator.Commands.ReviewCommands;
-using CB.WebApi.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed((host) => true)
+        .AllowCredentials();
+    });
+});
+builder.Services.AddSignalR();
+
 // Add services to the container.
 
 // Registiration
@@ -55,18 +68,6 @@ builder.Services.AddScoped(typeof(ICarDescriptionRepository), typeof(CarDescript
 builder.Services.AddScoped(typeof(IReviewRepository), typeof(ReviewRepository));
 builder.Services.AddScoped(typeof(IAppUserRepository), typeof(AppUserRepository));
 builder.Services.AddScoped(typeof(IAppRoleRepository), typeof(AppRoleRepository));
-
-builder.Services.AddCors(opt =>
-{
-    opt.AddPolicy("CorsPolicy", builder =>
-    {
-        builder.AllowAnyHeader()
-        .AllowAnyMethod()
-        .SetIsOriginAllowed((host) => true)
-        .AllowCredentials();
-    });
-});
-builder.Services.AddSignalR();
 
 // For CQRS
 builder.Services.ContainerDependecies();
@@ -108,13 +109,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("CorsPolicy");
-
-app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseHttpsRedirection();
+
 app.MapHub<CarHub>("/carhub");
+app.MapControllers();
 
 app.Run();

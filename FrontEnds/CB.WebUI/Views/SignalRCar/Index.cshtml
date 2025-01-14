@@ -4,6 +4,7 @@
 
 <h1>Index</h1>
 
+<!-- SignalR kütüphanesinin minified sürümünü dahil edilir -->
 <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
 
 @section Scripts
@@ -13,27 +14,35 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
+                        <!-- JavaScript kodu içinde SignalR bağlantısını başlatılır -->
                         <script type="text/javascript">
                             $(document).ready(() =>{
 
-                                var connection =new signalR.HubConnectionBuilder().withUrl("https://localhost:44347/CarHub").build();
+                                // SignalR ile Hub bağlantısı kurulur
+                                var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:44347/CarHub").build();
 
-                                $("#constatus").text(connection.state);
+                                // Bağlantı durumu başlangıçta ekranda gösterilir
+                                $("#constatus1").text(connection.state);
 
+                                 // Bağlantı başarılı olduğunda yapılacak işlemler
                                 connection.start().then(() => {
-                                      $("#constatus").text(connection.state);
-
+                                  // Bağlantı başarılı olduğunda durumu güncellenir
+                                      $("#constatus1").text(connection.state);
+                                    // Her 1 saniyede bir "SendCarCount" metodunu çağırılır
+                                    // Bu metod API'den araba sayısını alır
                                       setInterval(() => {
                                           connection.invoke("SendCarCount");
                                       }, 1000);
                                 }).catch((err) => {
+                                       // Eğer bağlantı kurulamazsa hata mesajı gösterilir
                                     console.log(err);
-
-                                     $("#constatus").text("Bağlantı kurulamadı!");
+                                     $("#constatus1").text("Bağlantı kurulamadı!");
                                 });
 
-                                connection.on("ReceiveCarCount", (value) => {
-                                    $("#carcount").text(value);
+                                 // "ReceiveCarCount" mesajı alındığında arabaların sayısını ekrana yazdırılır
+                                connection.on("ReceiveCarCount", (car) => {
+                                     // API'den alınan araba sayısını ekranda gösterilır
+                                    $("#carcount").text(car);
                                 });
                             });
                         </script>
